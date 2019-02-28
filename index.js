@@ -19,12 +19,17 @@ mongoose.connect(dbConfig.url, {
 }).catch((error) => {
   console.log(error.message)
 })
+
+
 app.use(bodyParser.urlencoded({
   extended: true
 }))
 
 // parse requests of content type application/json
 app.use(bodyParser.json())
+
+// Require the routes
+require('./app/routes/note.routes.js')(app)
 
 // defines a simple base root
 app.get('/', (req, res) => {
